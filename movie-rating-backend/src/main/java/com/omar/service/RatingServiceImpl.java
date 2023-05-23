@@ -2,16 +2,18 @@ package com.omar.service;
 
 import com.omar.entity.RatingEntity;
 import com.omar.repo.RatingRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RatingServiceImpl implements RatingService{
 
-    @Autowired
-    private RatingRepo ratingRepo;
+    private final RatingRepo ratingRepo;
 
     @Override
     public RatingEntity addRating(RatingEntity rating) {
@@ -24,11 +26,14 @@ public class RatingServiceImpl implements RatingService{
     }
 
     @Override
+    public List<RatingEntity> getRatingByUserId(int id) {
+        List<RatingEntity> ratings = ratingRepo.findByUserId(id);
+        return ratings;
+    }
+
+    @Override
     public RatingEntity updateRating(RatingEntity rating) {
-        RatingEntity existingRating = ratingRepo.findById(rating.getId()).get();
-//        if (existingRating == null) {
-//            throw new RatingNotFoundException; // Implement This
-//        }
+        RatingEntity existingRating = ratingRepo.findById(rating.getId()).orElseThrow();
         existingRating.setTitle(rating.getTitle());
         existingRating.setDescription(rating.getDescription());
         existingRating.setRating(rating.getRating());

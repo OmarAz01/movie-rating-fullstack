@@ -3,6 +3,7 @@ package com.omar.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omar.model.Movie;
 import com.omar.model.MovieApiResponse;
+import lombok.RequiredArgsConstructor;
 import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

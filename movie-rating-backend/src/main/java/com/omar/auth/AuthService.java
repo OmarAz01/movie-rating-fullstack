@@ -1,14 +1,12 @@
 package com.omar.auth;
 
+import com.omar.config.JwtService;
 import com.omar.entity.Role;
 import com.omar.entity.UserEntity;
 import com.omar.repo.UserRepo;
-import com.omar.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +25,8 @@ public class AuthService {
         userRepo.save(user);
 
         String jwt = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().jwt(jwt).build();
+        return AuthenticationResponse.builder().id(user.getId()).username(user.getUsername())
+                .role(user.getRole()).jwt(jwt).build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -35,6 +34,7 @@ public class AuthService {
         UserEntity user = userRepo.findByUsername(request.getUsername()).orElseThrow();
         
         String jwt = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().jwt(jwt).build();
+        return AuthenticationResponse.builder().id(user.getId()).username(user.getUsername())
+                .role(user.getRole()).jwt(jwt).build();
     }
 }

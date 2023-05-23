@@ -21,6 +21,13 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public UserDTO userDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(id);
+        userDTO.setUsername(username);
+        return userDTO;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -96,7 +103,6 @@ public class UserEntity implements UserDetails {
         return "UserEntity{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
     }
