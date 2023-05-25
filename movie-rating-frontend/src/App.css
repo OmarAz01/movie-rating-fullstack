@@ -1,5 +1,5 @@
-/* primary color: rgba(103, 58, 183, 1)
-   secondary color: rgba(63, 81, 181, 1) */
+/* primary color light blue: rgb(180, 210, 255)
+   secondary color (blue): rgba(63, 81, 181, 1) */
 
 body {
     font-family: 'Almarai', sans-serif;
@@ -11,23 +11,23 @@ header {
     display: flex;
     justify-content: right;
     align-items: center;
-    padding: 0 10px;
+    padding: 0;
     margin: 10px 10px;
     position: relative;
-
+    height: 30px;
 }
 
 .link {
     text-decoration: none;
     font-size: 20px;
-    padding: 0 20px;
+    padding: 0px 20px;
     color: rgba(63, 81, 181, 1);
 }
 
 .linkLeft {
     text-decoration: none;
     font-size: 20px;
-    padding: 0 20px;
+    padding: 0px 20px;
     color: rgba(63, 81, 181, 1);
     position: absolute;
     left: 0;
@@ -42,36 +42,99 @@ header {
 }
 
 
+
+
 /* Home Page */
 
+.welcomeContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    opacity: 0.5;
+}
+
 .welcomeContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
+    margin: 10px 0 20px 0px;
+    height: 50%;
+}
+
+.welcomeContent {
+    z-index: 1;
+
 }
 
 .signUp {
     color: aliceblue;
     font-weight: 900;
-    margin: 10px 100px;
+    margin: 10px 0px 100px 100px;
     width: 300px;
     height: 50px;
     border: none;
     border-radius: 20px;
     background: rgba(63, 81, 181, 1);
-    cursor: pointer;
     
 }
 
+.signUp:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
 .pageTitle {
-    color: rgba(230, 230, 230, 1);
-    font-size: 40px;
-    padding: 50px 100px 0px 100px;
+    color: rgb(180, 210, 255);
+    font-size: 50px;
+    padding: 200px 100px 0px 100px;
+    margin-bottom: 0;
+    text-shadow: 5px 5px 3px rgba(0, 0, 0, 1);
 }
 
 .pageDesc {
-    color: rgba(230, 230, 230, 1);
-    font-size: 15px;
+    color: rgb(180, 210, 255);
+    font-size: 20px;
     padding: 0px 0px 20px 100px;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+}
+
+.trendingMovieContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    flex-wrap: wrap;
+}
+
+.trendingMoviesHeader {
+    color: rgb(180, 210, 255);
+    font-size: 40px;
+    padding: 50px 0px 30px 100px;
+}
+
+.trendingMovie>img {
+    width: 250px;
+    height: 350px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+    cursor: pointer;
+
+}
+
+.trendingMovie>img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+    opacity: .7;
 }
 
 @media screen and (max-width: 768px) {
@@ -85,21 +148,124 @@ header {
     }
 
     .pageTitle {
-        text-align: center;
-        padding: 50px 10px 0px 10px;
+        padding: 130px 10px 0px 10px;
     }
 
     .pageDesc {
-        text-align: center;
         padding: 10px;
     }
 
-    .welcomeContainer {
+    .welcomeContent {
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        text-align: center;
+
     }
 
     .signUp {
         width: 300px;
+        margin: 20px 0 100px 0;
     }
+
+    .trendingMovie>img {
+        width:150px;
+        height: 200px;
+    }
+    
+}
+
+
+/* Movie Page */
+
+.moviePageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+.movieBackdrop {
+    position: relative;
+}
+  
+.movieBackdrop>img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 320px;
+    max-width: 1100px;
+    border-radius: 50px;
+}
+
+.movieDetails {
+    display: flex;
+    flex-direction: row;
+    padding: 100px;
+    text-align: center;
+}
+
+.movieDescription {
+    display: flex;
+    flex-direction: column;
+    color: rgba(180, 210, 255);
+    
+}
+
+.movieDescription>h1 {
+    font-size: 50px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.movieDescription>h4 {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 5px;
+    font-weight: 300;
+}
+
+.movieDescription>p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0;
+    padding: 50px;
+    font-weight: 300;
+}
+
+
+.movieDetails>img {
+    width: 350px;
+    height: 510px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+@media screen and (max-width: 950px) {
+
+    .movieDetails {
+        flex-direction: column;
+        padding: 100px 0 0 0;
+    }
+
+    .movieDescription>p {
+        padding: 40px 10px 0 10px;
+        font-size: 15px;
+    }
+
+    .movieDescription>h1 {
+        font-size: 40px;
+    }
+
+    .movieDescription>h4 {
+        font-size: 15px;
+    }
+
+    .movieDetails>img {
+        display: none;
+    }
+
     
 }

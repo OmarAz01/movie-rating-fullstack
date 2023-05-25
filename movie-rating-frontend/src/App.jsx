@@ -7,7 +7,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <header>
-        <Link to="/home" className='linkLeft'>
+        <Link to="/" className='linkLeft'>
           <h4 className='nav'> Home </h4>
         </Link>
         <Link to="/movies" className='link'>
@@ -22,7 +22,7 @@ const App = () => {
       </header>
       <main>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
