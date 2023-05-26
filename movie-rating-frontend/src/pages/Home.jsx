@@ -12,7 +12,7 @@ const Home = () => {
             Track and Rate Your Favorite Movies!
           </h1>
           <p className='pageDesc'>
-            Discover new movies, curate your own list of ratings, and keep track of your favorite films and ratings all in one place!
+            Discover new movies, curate your own list of ratings, and keep track of your favorite films all in one place!
           </p>
           <button className='signUp'> Sign Up Here </button>
         </div>

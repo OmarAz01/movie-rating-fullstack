@@ -1,8 +1,9 @@
 import React from 'react'
+import GetRatings from '../components/GetRatings'
 
 const MyRatings = () => {
   return (
-    <div>MyRatings</div>
+    <GetRatings />
   )
 }
 

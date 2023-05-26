@@ -19,14 +19,11 @@ const TrendingMovies = () => {
     const handleClick = (id) => {
         window.location.href = `movie/${id}`      
     }
-
-    
-
     
 
 
   return (      
-        trending.map((trending) => (
+        trending.slice(0, 15).map((trending) => (
             <div className='trendingMovie' key={trending.id}>  
                 <img src={'https://image.tmdb.org/t/p/original' + trending.poster_path} alt={trending.title} onClick={() => handleClick(trending.id)}/>
             </div>        
