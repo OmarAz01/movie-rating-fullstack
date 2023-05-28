@@ -11,7 +11,5 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends JpaRepository<UserEntity, Integer> {
     Optional<UserEntity> findByUsername(String username);
-
     UserDTO findUserById(Integer id);
-
 }

@@ -79,7 +79,6 @@ public class MovieApiServiceImpl implements MovieApiService{
                 ObjectMapper objectMapper = new ObjectMapper();
                 MovieApiResponse movieApiResponse = objectMapper.readValue(response, MovieApiResponse.class);
                 List<Movie> movies = movieApiResponse.getResults();
-                System.out.println(movies);
                 return movies;
             } catch (Exception e) {
                 throw new RuntimeException("Failed to parse JSON", e);

@@ -15,12 +15,14 @@ public class RatingController {
     private final RatingService ratingService;
     private final RatingRepo ratingRepo;
 
+    //Gets the rating by userID
     @GetMapping("/all/{id}")
     public List<RatingEntity> getAll(@PathVariable("id") Integer id) {
         List<RatingEntity> ratings = ratingRepo.findByUserId(id);
         return ratings;
     }
 
+    //Gets the rating by ratingID
     @GetMapping("/{id}")
     public RatingEntity getRating(@PathVariable("id") Integer id) {
         return ratingService.getRatingById(id);
