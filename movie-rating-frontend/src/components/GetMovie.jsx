@@ -9,33 +9,38 @@ const GetMovie = ({ id }) => {
     const VITE_URL = import.meta.env.VITE_URL
     const [movie, setMovie] = useState([])
     const [favorite, setFavorite] = useState(0)
-    const [rating, setRating] = useState({ movieId: id, userId: 1, rating: 0, description: ""})
+    const [rating, setRating] = useState({ movieId: id, title: "", userId: 1, rating: 0, description: "", posterPath: ""})
     const [hover, setHover] = useState(null)
-  
+    const user = localStorage.getItem('user')  
 
     useEffect(() => {
-        axios.get(VITE_URL + '/api/moviedb/' + id).then((response) => {
+        axios.get(VITE_URL + '/api/moviedb/' + id).then((response) => { setRating({...rating, posterPath: response.data.poster_path, title: response.data.title});
             setMovie(response.data)}).catch((error) => {
                 console.log(error)
             });
     }, [])
 
     const addToFav = (id) => {
-        axios.post(VITE_URL + '/api/user/favorites' + {id}).then((response) => {
-            setFavorite(response.data)
-        }).catch(() => {
-            window.alert("Sign in to add to favorites")
-        })
+        // axios.post(VITE_URL + '/api/user/favorites' + {id}).then((response) => {
+        //     setFavorite(response.data)
+        // }).catch(() => {
+        //     window.alert("Sign in to add to favorites")
+        // })
+
     }
 
     const rateMovie = (e) => {    
       e.preventDefault()
-
-      axios.post(VITE_URL + '/api/rating/add', rating).then(() => {
+      if (user) {
+        axios.post(VITE_URL + '/api/rating/add', rating, {headers: { 'Authorization': `Bearer ${JSON.parse(user).jwt}` }}).then(() => {
           window.alert("Movie Rated")
-      }).catch(() => {
-          window.alert("Sign in to rate movies")
-      })
+        }).catch((error) => {
+          console.log(error)
+        })
+      } else {
+        window.alert("Sign in to rate movies")
+      }
+      
     }
 
 
@@ -68,7 +73,7 @@ const GetMovie = ({ id }) => {
                   </label>
                 )
               })}
-              <textarea placeholder='Leave a review' rows={20} cols={40} className='ratingComment' maxLength={250} value={rating.description} 
+              <textarea placeholder='Leave a review' rows={20} cols={40} className='ratingComment' maxLength={150} value={rating.description} 
               onChange={(e) => setRating({...rating, description: e.target.value })}/>  
               <button type='submit' className='submitRating' onClick={(e) => {rateMovie(e)}}> Submit </button>            
             </form>

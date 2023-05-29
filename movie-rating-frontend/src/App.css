@@ -6,6 +6,13 @@ body {
     background: rgba(30, 30, 30, 1);
 }
 
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+    opacity: .7;
+}
+
 header {
 
     display: flex;
@@ -85,12 +92,6 @@ header {
     
 }
 
-.signUp:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: all 0.2s ease;
-}
-
 .pageTitle {
     color: rgb(180, 210, 255);
     font-size: 50px;
@@ -137,14 +138,66 @@ header {
     opacity: .7;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 550px) and (max-width: 750px) {
 
-    .link {
-        font-size: 17px;
+    .pageTitle {
+        padding: 130px 10px 0px 10px;
+    }
+
+    .pageDesc {
+        padding: 10px;
+    }
+
+    .welcomeContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+    }
+
+    .signUp {
+        width: 300px;
+        margin: 20px 0 100px 0;
+    }
+
+    .trendingMovieContainer {
+        margin: 0;
+        padding: 0;
+    }
+
+    .trendingMoviesHeader {
+        padding: 50px 0px 30px 10px;
+        text-align: center;
+    }
+
+    .trendingMovie>img {
+        width:150px;
+        height: 200px;
+        margin: 5px;
+        
+    }    
+}
+
+@media screen and (max-width: 550px) {
+
+    header {
+        justify-content: center;
     }
 
     .linkLeft {
-        font-size: 17px;
+        position: relative;
+    }
+
+    .link {
+        font-size: 15px;
+        padding: 5;
+        padding-right: 0;
+    }
+
+    .linkLeft {
+        font-size: 15px;
+        padding: 5px 5px 5px 0;
     }
 
     .pageTitle {
@@ -168,9 +221,21 @@ header {
         margin: 20px 0 100px 0;
     }
 
+    .trendingMovieContainer {
+        margin: 0;
+        padding: 0;
+    }
+
+    .trendingMoviesHeader {
+        padding: 50px 0px 30px 10px;
+        text-align: center;
+    }
+
     .trendingMovie>img {
         width:150px;
         height: 200px;
+        margin: 5px;
+        
     }
     
 }
@@ -298,7 +363,6 @@ header {
     margin: 20px;
   }
 
-
 @media screen and (max-width: 950px) {
 
     .movieDetails {
@@ -388,6 +452,27 @@ header {
     opacity: .7;
 }
 
+@media screen and (max-width: 950px) {
+
+    .searchBar {
+        padding: 50px 0 50px 0;
+    }
+
+    .searchedMovie {
+        min-width: 150px;
+        max-width: 200px;
+    }
+
+    .searchedMovie>img {
+        width: 150px;
+        height: 200px;
+        margin: 5px;
+    }   
+
+    
+}
+    
+
 /* SignIn Page */
 
 .loginContainer {
@@ -409,7 +494,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 500px;
-    height: 380px;
+    height: 300px;
     align-items: center;
     text-align: center;
     padding: 50px 50px 10px 50px;
@@ -430,49 +515,26 @@ header {
     color: rgb(255, 255, 255)
 }
 
-.loginForm>button {
+.signInButtons>button {
     font-weight: 900;
     width: 200px;
     height: 50px;
     border: none;
     border-radius: 20px;
     background: rgb(241, 245, 28);   
-    margin: 20px 0 10px 0;
+    margin: 20px 10px 10px 10px;
 }
 
-.loginForm>button:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: all 0.2s ease;
-    opacity: .7;
-}
-
-.signUpButton {
-    font-weight: 900;
-    width: 200px;
-    height: 50px;
-    border: none;
-    border-radius: 20px;
-    background: rgb(241, 245, 28);  
-}
-
-.signUpButton:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: all 0.2s ease;
-    opacity: .7;
-}
-
-@media screen and (max-width: 950px) {
+@media screen and (min-width: 550px) and (max-width: 750px){
 
     .loginContainer>h1 {
-        font-size: 30px;
+        font-size: 40px;
     }
 
     .loginForm {
-        padding: 10px;
-        width: 350px;
-        height: 280px;
+        padding: 20px;
+        width: 450px;
+        height: 230px;
     }
 
     .loginForm>input {
@@ -483,16 +545,246 @@ header {
         font-size: 15px;
     }
 
-    .loginForm>button {
-        width: 100px;
-        height: 30px;
+    .signInButtons>button {
+        width: 150px;
+        height: 40px;
+        font-size: 12px;
+        
+    } 
+
+    
+}
+
+@media screen and (max-width: 550px) {
+
+    .loginContainer>h1 {
+        font-size: 30px;
+    }
+
+    .loginForm {
+        padding: 20px;
+        width: 250px;
+        height: 200px;
+    }
+
+    .loginForm>input {
         font-size: 12px;
     }
 
-    .signUpButton {
+    .loginForm>label {
+        font-size: 15px;
+    }
+
+    .signInButtons>button {
         width: 100px;
         height: 30px;
         font-size: 12px;
+        
+    }
+
+}
+
+/* MyRatings Page */
+
+.littleMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: rgb(180, 210, 255);
+    font-size: 30px;
+}
+
+.signInButton {
+    font-weight: 900;
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    background: rgb(241, 245, 28);  
+    margin: 20px 0 10px 0;
+}
+
+.myRatingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+}
+
+.ratingRightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.rating {
+    display: flex;
+    justify-content: right;    
+    width: 700px;
+    height: 250px;
+    padding: 10px;
+    margin: 10px;
+    position: relative;    
+    border: rgb(180, 210, 255) solid 1px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+
+}
+
+.rating>img {
+    position: absolute;
+    margin-right: 10px;
+    left: 10px;
+    width: 170px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}
+
+.ratingInfo {
+    width: 500px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    justify-content: center;
+    align-items: center;    
+    position: relative;
+}
+
+.ratingInfo>h4 {
+    font-weight: 500;
+}
+
+.ratingInfo>p {
+    font-weight: 500;
+    height: 80px;
+    padding: 0 15px 0 15px;
+    word-wrap: break-word;
+    
+}
+
+.ratingButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.deleteButton {
+    font-weight: 900;
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background: rgb(241, 245, 28);
+    margin-left: 20px;
+    
+}
+
+.editButton {
+    font-weight: 900;
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background: rgb(241, 245, 28);  
+    
+}
+
+@media (max-width: 550px) {
+
+    .rating {
+        width: 300px;
+        height: 160px;
+        position: relative;
+    }
+
+    .rating>img {
+        width: 100px;
+        height: 150px;
+    }
+
+    .ratingInfo {
+        width: 200px;
+    }
+
+    .ratingInfo>h2 {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .ratingInfo>h4 {
+        font-size: 10px;
+    }
+
+    .ratingInfo>p {
+        font-size: 10px;
+        height: 50px;        
+    }
+
+    .editButton {
+        height: 25px;
+        width: 60px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .deleteButton {
+        height: 25px;
+        width: 60px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+    
+        
+}
+
+@media screen and (min-width: 550px) and  (max-width: 750px) {
+
+    .rating {
+        width: 500px;
+        height: 150px;
+    }
+
+    .rating>img {
+        width: 100px;
+        height: 150px;
+    }
+
+    .ratingInfo {
+        width: 400px;
+    }
+
+    .ratingInfo>h2 {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .ratingInfo>h4 {
+        font-size: 10px;
+    }
+
+    .ratingInfo>p {
+        font-size: 10px;
+        height: 35px;        
+    }
+
+    .editButton {
+        height: 25px;
+        width: 60px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .deleteButton {
+        height: 25px;
+        width: 60px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 10px;
     }
     
 }

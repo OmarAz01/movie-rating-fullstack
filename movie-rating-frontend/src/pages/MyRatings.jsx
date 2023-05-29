@@ -3,7 +3,10 @@ import GetRatings from '../components/GetRatings'
 
 const MyRatings = () => {
   return (
-    <GetRatings />
+    <div className="myRatingsContainer">
+      <GetRatings />
+    </div>
+   
   )
 }
 
