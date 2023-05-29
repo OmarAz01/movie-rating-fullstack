@@ -37,4 +37,12 @@ public class AuthService {
         return AuthenticationResponse.builder().id(user.getId()).username(user.getUsername())
                 .role(user.getRole()).jwt(jwt).build();
     }
+
+    public Boolean validate(String authorization) {
+        if (authorization == null || !authorization.startsWith("Bearer ")) {
+            return false;
+        }
+        String jwt = authorization.substring(7);
+        return jwtService.isTokenExpired(jwt);
+    }
 }

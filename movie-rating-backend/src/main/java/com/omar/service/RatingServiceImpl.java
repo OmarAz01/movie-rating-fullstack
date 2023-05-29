@@ -38,6 +38,7 @@ public class RatingServiceImpl implements RatingService{
         existingRating.setDescription(rating.getDescription());
         existingRating.setRating(rating.getRating());
         existingRating.setUserId(rating.getUserId());
+
         return ratingRepo.save(existingRating);
     }
 
