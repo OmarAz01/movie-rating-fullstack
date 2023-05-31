@@ -20,24 +20,14 @@ const App = () => {
       }
       })
       .catch((error) => {
-        console.log(localStorage.getItem('user'))
         localStorage.removeItem('user')
         
-        if (!error.response) {
-          console.log('Network Error')
+        if (error.response.status === 404) {
           setLoggedIn(false)
         }
-        else if (error.status === 401) {
+        else if (error.response.status === 403) {
           setLoggedIn(false)
-        }
-        else if (error.status === 403) {
-          console.log('Forbidden')
-          setLoggedIn(false)
-        }
-        else if (error.message.includes('CORS')) {
-          console.log('CORS Error')
-          setLoggedIn(false)
-        }        
+        }     
         else {
           console.log(error)
         }
@@ -83,6 +73,9 @@ const App = () => {
           <Route path="/movie/:id" element={<Movie />} />
         </Routes>
     </main>
+    <footer>
+      <p>Created by <a className='footerLink' href="https://github.com/OmarAz01" target="_blank" rel='noreferrer'>Omar Alzoubi</a></p>    
+    </footer>
     </BrowserRouter>
 
     

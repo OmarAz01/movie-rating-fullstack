@@ -1,6 +1,5 @@
 import React from 'react'
 import '../App.css'
-import background from '../assets/background.jpg'
 import TrendingMovies from '../components/TrendingMovies'
 
 const Home = () => {
@@ -14,7 +13,7 @@ const Home = () => {
           <p className='pageDesc'>
             Discover new movies, curate your own list of ratings, and keep track of your favorite films all in one place!
           </p>
-          <button className='signUp'> Sign Up Here </button>
+          <button className='signUp' onClick={() => {window.location.href = '/signup'}}> Sign Up Here </button>
         </div>
       </div>
         <h1 className='trendingMoviesHeader'> This Week's Trending Movies </h1>    

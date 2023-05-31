@@ -2,32 +2,31 @@ import React, { useState, useEffect } from 'react'
 import '../App.css'
 import { FaStar } from 'react-icons/fa'
 
+
 import axios from 'axios'
 
 const GetMovie = ({ id }) => {
 
     const VITE_URL = import.meta.env.VITE_URL
     const [movie, setMovie] = useState([])
-    const [favorite, setFavorite] = useState(0)
-    const [rating, setRating] = useState({ movieId: id, title: "", userId: 1, rating: 0, description: "", posterPath: ""})
     const [hover, setHover] = useState(null)
-    const user = localStorage.getItem('user')  
+    const [rating, setRating] = useState({ movieId: id, title: "", userId: 0, rating: 0, description: "", posterPath: ""})  
+    const user = localStorage.getItem('user')
 
     useEffect(() => {
-        axios.get(VITE_URL + '/api/moviedb/' + id).then((response) => { setRating({...rating, posterPath: response.data.poster_path, title: response.data.title});
-            setMovie(response.data)}).catch((error) => {
-                console.log(error)
-            });
+        
+        axios.get(VITE_URL + '/api/moviedb/' + id).then((response) => { 
+          if (user) {
+            const userid = JSON.parse(user).id
+            setRating({...rating, userId: userid, posterPath: response.data.poster_path, title: response.data.title});
+            setMovie(response.data)
+          }
+          else {
+            setMovie(response.data)            
+          }         
+        }).catch((error) => { console.log(error)})
+            
     }, [])
-
-    const addToFav = (id) => {
-        // axios.post(VITE_URL + '/api/user/favorites' + {id}).then((response) => {
-        //     setFavorite(response.data)
-        // }).catch(() => {
-        //     window.alert("Sign in to add to favorites")
-        // })
-
-    }
 
     const rateMovie = (e) => {    
       e.preventDefault()
@@ -35,14 +34,20 @@ const GetMovie = ({ id }) => {
         axios.post(VITE_URL + '/api/rating/add', rating, {headers: { 'Authorization': `Bearer ${JSON.parse(user).jwt}` }}).then(() => {
           window.alert("Movie Rated")
         }).catch((error) => {
-          console.log(error)
+          if (error.response.status === 403) {
+            window.alert('You have been logged out, please sign in again')
+            localStorage.removeItem('user')
+            window.location.href = '/signin'
+          }
+          else {
+            console.log(error)
+          }
         })
       } else {
         window.alert("Sign in to rate movies")
       }
       
     }
-
 
   return (
     <>
@@ -55,29 +60,26 @@ const GetMovie = ({ id }) => {
           <h1>{movie.title}</h1>
           <h4>Release Date {movie.release_date} </h4>
           <h4>Runtime {movie.runtime} </h4> 
-          <p>{movie.overview}</p>
-          <button onClick={() => {addToFav()}}> Add to Favorites </button>          
+          <p>{movie.overview}</p>    
+          <form className='rateMovie'>
+            <h2> Leave A Review </h2>
+            {[...Array(5)].map((star, index) => {
+            const currentRating = index + 1;
+            return (
+                <label key={index}>
+                <input type="radio" name="rating"  value={currentRating} onClick={() => {setRating({...rating, rating: currentRating})}}/>
+                <FaStar size={30} className='star' color={currentRating <= (hover || rating.rating) ? "#ffc107" : "#e4e5e9"} 
+                onMouseEnter={() => setHover(currentRating)}
+                onMouseLeave={() => setHover(null)} />
+                </label>
+            )
+            })}
+            <textarea placeholder='Leave a review' rows={20} cols={40} className='ratingComment' maxLength={150} value={rating.description} 
+            onChange={(e) => setRating({...rating, description: e.target.value })}/>  
+            <button type='submit' className='submitRating' onClick={(e) => {rateMovie(e)}}> Submit </button>            
+        </form>   
         </div>                    
-      </div>
-        <div className="movieRating">            
-            <form className='rateMovie'>
-              <h2> Rate The Movie</h2>
-              {[...Array(5)].map((star, index) => {
-                const currentRating = index + 1;
-                return (
-                  <label key={index}>
-                    <input type="radio" name="rating"  value={currentRating} onClick={() => {setRating({...rating, rating: currentRating})}}/>
-                    <FaStar size={30} className='star' color={currentRating <= (hover || rating.rating) ? "#ffc107" : "#e4e5e9"} 
-                    onMouseEnter={() => setHover(currentRating)}
-                    onMouseLeave={() => setHover(null)} />
-                  </label>
-                )
-              })}
-              <textarea placeholder='Leave a review' rows={20} cols={40} className='ratingComment' maxLength={150} value={rating.description} 
-              onChange={(e) => setRating({...rating, description: e.target.value })}/>  
-              <button type='submit' className='submitRating' onClick={(e) => {rateMovie(e)}}> Submit </button>            
-            </form>
-        </div>     
+      </div>  
     </>
     
   )

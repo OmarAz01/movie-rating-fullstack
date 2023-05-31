@@ -33,40 +33,38 @@ const GetRatings = () => {
     }).catch((error) => console.log(error))
   }
 
-  const editRating = (id) => {
-    window.location.href = '/movie/' + id
-  }
-
   return (
     <>
-    {!user && (
-      <>
-      <div className='littleMessage'> Please sign in to view your ratings </div>
-      <button className='signInButton' type="button" onClick={() => window.location.href = '/signin'}>Sign In</button>
-      </>
-    )}
-      {ratings.slice(0, (ratings.length > 15 ? 15 : ratings.length)).map((rating) => (
-        <div className="rating" key={rating.id}>
-          <img src={'https://image.tmdb.org/t/p/original' + rating.posterPath} alt={rating.title} />
-          <div className="ratingRightContainer">
-            <div className="ratingInfo">
-              <h2>{rating.title}</h2>
-              <h4>Rating: {rating.rating}/5</h4>
-              <p>{rating.description}</p>
-          </div>
-          <div className="ratingButtons">
-                {/* Add better edit functionality */}
-                <button className='editButton' type="button" onClick={() => editRating(rating.movieId) }>Edit</button>
-                <button className='deleteButton' type="button" onClick={() => { const confirmBox = window.confirm(
-                  "Do you really want to delete this rating?"); if (confirmBox === true) {
-                    deleteRating(rating.id)
-                  }}
-                }>Delete</button>
+      {!user && (
+        <>
+          <div className='littleMessage'>Please sign in to view your ratings</div>
+          <button className='signInButton' type="button" onClick={() => window.location.href = '/signin'}>Sign In</button>
+        </>
+      )}
+      {user && ratings.length > 0 ? (
+        ratings.slice(0, ratings.length > 15 ? 15 : ratings.length).map((rating) => (
+          <div className="rating" key={rating.id}>
+            <img src={'https://image.tmdb.org/t/p/original' + rating.posterPath} alt={rating.title} />
+            <div className="ratingRightContainer">
+              <div className="ratingInfo">
+                <h2>{rating.title}</h2>
+                <h4>Rating: {rating.rating}/5</h4>
+                <p>{rating.description}</p>
+              </div>
+              <div className="ratingButtons">
+                <button className='deleteButton' type="button" onClick={() => {
+                  const confirmBox = window.confirm("Do you really want to delete this rating?");
+                  if (confirmBox === true) {
+                    deleteRating(rating.id);
+                  }
+                }}>Delete</button>
               </div>
             </div>
           </div>
-          
-      ))}
+        ))
+      ) : (
+        user && ratings.length === 0 && <div className='littleMessage'>You have not rated any movies yet</div>
+      )}
     </>
   );
 };

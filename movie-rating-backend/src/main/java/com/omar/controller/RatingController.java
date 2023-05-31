@@ -18,8 +18,7 @@ public class RatingController {
     //Gets the rating by userID
     @GetMapping("/all/{id}")
     public List<RatingEntity> getAll(@PathVariable("id") Integer id) {
-        List<RatingEntity> ratings = ratingRepo.findByUserId(id);
-        return ratings;
+        return ratingService.getRatingByUserId(id);
     }
 
     //Gets the rating by ratingID

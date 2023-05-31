@@ -9,14 +9,17 @@ const SignIn = () => {
     e.preventDefault()
 
     try {
-      console.log(userDetails)
       const response = await axios.post(VITE_URL + '/api/auth/authenticate', userDetails)
-      console.log(response)
       localStorage.setItem('user', JSON.stringify(response.data))
       window.location.href = '/movies'    
        
     }catch  (error) {
-      console.log(error)
+      if (error.response.status === 403) {
+        window.alert('Incorrect Username or Password')
+      }
+      else {
+        console.log(error)
+      }
     }    
   }
   
@@ -36,8 +39,7 @@ const SignIn = () => {
         <div className="signInButtons">
           <button type='submit'>Sign In</button>
           <button type="button" onClick={() => signUp()}>Sign Up</button>
-        </div>
-        
+        </div>        
       </form> 
     </div>
   )

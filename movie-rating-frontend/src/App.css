@@ -1,10 +1,13 @@
-/* primary color light blue: rgb(180, 210, 255)
-   secondary color (blue): rgba(63, 81, 181, 1) */
-
 body {
     font-family: 'Almarai', sans-serif;
     background: rgba(30, 30, 30, 1);
+    min-height: 100vh;
 }
+
+main {
+    min-height: calc(100vh - 100px);
+}
+
 
 button:hover {
     cursor: pointer;
@@ -14,7 +17,6 @@ button:hover {
 }
 
 header {
-
     display: flex;
     justify-content: right;
     align-items: center;
@@ -28,28 +30,57 @@ header {
     text-decoration: none;
     font-size: 20px;
     padding: 0px 20px;
-    color: rgba(63, 81, 181, 1);
+    color: rgb(241, 245, 28);    
 }
 
 .linkLeft {
     text-decoration: none;
     font-size: 20px;
     padding: 0px 20px;
-    color: rgba(63, 81, 181, 1);
+    color: rgb(241, 245, 28);
     position: absolute;
     left: 0;
+
 }
 
 .link:hover{
-    color: #f1356d;
+    color: rgb(180, 210, 255);
 }
 
 .linkLeft:hover{
-    color: #f1356d;
+    color: rgb(180, 210, 255);
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 80px;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    text-align: center;
+    background: rgb(46, 45, 45);
+    mix-blend-mode: difference;
+    margin-top: 20px;
+}
 
+.footerLink {
+    text-decoration: none;
+    color: rgb(241, 245, 28);
+    padding-left: 5px;
+}
 
+.footerLink:hover {
+    color: rgb(180, 210, 255);
+}
+
+.spacer {
+    height: calc(100vh - 200px);
+}
 
 /* Home Page */
 
@@ -81,14 +112,14 @@ header {
 }
 
 .signUp {
-    color: aliceblue;
+    color: black;
     font-weight: 900;
     margin: 10px 0px 100px 100px;
     width: 300px;
     height: 50px;
     border: none;
     border-radius: 20px;
-    background: rgba(63, 81, 181, 1);
+    background: rgb(241, 245, 28);
     
 }
 
@@ -101,7 +132,7 @@ header {
 }
 
 .pageDesc {
-    color: rgb(180, 210, 255);
+    color: rgb(255, 255, 255);
     font-size: 20px;
     padding: 0px 0px 20px 100px;
     text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
@@ -139,6 +170,10 @@ header {
 }
 
 @media screen and (min-width: 550px) and (max-width: 750px) {
+    footer {
+        height: 60px;
+
+    }
 
     .pageTitle {
         padding: 130px 10px 0px 10px;
@@ -181,6 +216,11 @@ header {
 
 @media screen and (max-width: 550px) {
 
+    footer {
+        height: 50px;
+        font-size: 13px;
+    }
+
     header {
         justify-content: center;
     }
@@ -190,7 +230,7 @@ header {
     }
 
     .link {
-        font-size: 15px;
+        font-size: 13px;
         padding: 5;
         padding-right: 0;
     }
@@ -201,11 +241,13 @@ header {
     }
 
     .pageTitle {
-        padding: 130px 10px 0px 10px;
+        padding: 130px 5px 0px 5px;
+        font-size: 30px;
     }
 
     .pageDesc {
         padding: 10px;
+        font-size: 15px;
     }
 
     .welcomeContent {
@@ -217,8 +259,10 @@ header {
     }
 
     .signUp {
-        width: 300px;
+        width: 150px;
+        height: 45px;
         margin: 20px 0 100px 0;
+        font-size: 12px;
     }
 
     .trendingMovieContainer {
@@ -229,11 +273,12 @@ header {
     .trendingMoviesHeader {
         padding: 50px 0px 30px 10px;
         text-align: center;
+        font-size: 30px;
     }
 
     .trendingMovie>img {
         width:150px;
-        height: 200px;
+        height: 230px;
         margin: 5px;
         
     }
@@ -275,7 +320,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: rgba(180, 210, 255);
+    color: rgb(255, 255, 255);
     
 }
 
@@ -283,6 +328,7 @@ header {
     font-size: 50px;
     margin: 0;
     padding-bottom: 20px;
+    color: rgb(180, 210, 255);
 }
 
 .movieDescription>h4 {
@@ -342,7 +388,7 @@ header {
   .ratingComment {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: clamp(300px, 90vw, 500px);
     height: 100px;
     padding: 0;
     border: none;
@@ -367,11 +413,11 @@ header {
 
     .movieDetails {
         flex-direction: column;
-        padding: 100px 0 0 0;
+        padding: 50px 0 0 0;
     }
 
     .movieDescription>p {
-        padding: 40px 10px 0 10px;
+        padding: 20px 10px 0 10px;
         font-size: 15px;
     }
 
@@ -395,7 +441,11 @@ header {
     }
 
     .rateMovie {
-        margin-top: 40px;
+        margin-top: 40px;        
+    }
+
+    .rateMovie>h2 {
+        font-size: 30px;
     }
 
     .submitRating {
@@ -481,6 +531,7 @@ header {
     align-items: center;
     text-align: center;
     padding: 100px;
+    height: 100svh;
 }
 
 .loginContainer>h1 {
@@ -494,7 +545,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 500px;
-    height: 300px;
+    height: auto;
     align-items: center;
     text-align: center;
     padding: 50px 50px 10px 50px;
@@ -534,7 +585,7 @@ header {
     .loginForm {
         padding: 20px;
         width: 450px;
-        height: 230px;
+        
     }
 
     .loginForm>input {
@@ -564,7 +615,6 @@ header {
     .loginForm {
         padding: 20px;
         width: 250px;
-        height: 200px;
     }
 
     .loginForm>input {
@@ -590,9 +640,18 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px 5px 5px 5px;
     color: rgb(180, 210, 255);
-    font-size: 30px;
+    font-size: 25px;
+}
+
+.littleLittleMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 5px 5px 5px;
+    color: rgb(180, 210, 255);
+    font-size: 15px;
 }
 
 .signInButton {
@@ -609,13 +668,21 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 100px;
+    padding: 10px;
+}
+
+.myRatingsContainer>h1 {
+    font-size: 40px;
+    color: rgba(180, 210, 255);
+    margin: 0;
+    padding: 20px 5px;
 }
 
 .ratingRightContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     position: relative;
 }
 
@@ -652,6 +719,14 @@ header {
     position: relative;
 }
 
+.ratingInfo>h2 {
+    font-weight: 900;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    color: rgb(180, 210, 255);
+}
+
 .ratingInfo>h4 {
     font-weight: 500;
 }
@@ -659,9 +734,9 @@ header {
 .ratingInfo>p {
     font-weight: 500;
     height: 80px;
-    padding: 0 15px 0 15px;
-    word-wrap: break-word;
-    
+    word-wrap: break-word;   
+    padding: 0px 20px; 
+   
 }
 
 .ratingButtons {
@@ -679,21 +754,24 @@ header {
     border: none;
     border-radius: 20px;
     background: rgb(241, 245, 28);
-    margin-left: 20px;
-    
-}
-
-.editButton {
-    font-weight: 900;
-    width: 150px;
-    height: 45px;
-    border: none;
-    border-radius: 20px;
-    background: rgb(241, 245, 28);  
     
 }
 
 @media (max-width: 550px) {
+
+    .myRatingsContainer>h1 {
+        font-size: 30px;
+    }
+
+    .littleMessage {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .littleLittleMessage {
+        font-size: 10px;
+        text-align: center;
+    }
 
     .rating {
         width: 300px;
@@ -712,7 +790,6 @@ header {
 
     .ratingInfo>h2 {
         font-size: 15px;
-        font-weight: 500;
     }
 
     .ratingInfo>h4 {
@@ -723,20 +800,21 @@ header {
         font-size: 10px;
         height: 50px;        
     }
-
-    .editButton {
+    .deleteButton {
         height: 25px;
-        width: 60px;
+        width: 80px;
         font-size: 12px;
         font-weight: 600;
     }
 
-    .deleteButton {
-        height: 25px;
-        width: 60px;
-        font-size: 12px;
-        font-weight: 600;
-        margin-left: 10px;
+    .signInButton {
+        font-weight: 900;
+        width: 100px;
+        height: 30px;
+        border: none;
+        border-radius: 20px;
+        background: rgb(241, 245, 28);  
+        margin: 20px 0 10px 0;
     }
     
         
@@ -760,7 +838,6 @@ header {
 
     .ratingInfo>h2 {
         font-size: 15px;
-        font-weight: 500;
     }
 
     .ratingInfo>h4 {
@@ -772,19 +849,21 @@ header {
         height: 35px;        
     }
 
-    .editButton {
+    .deleteButton {
         height: 25px;
-        width: 60px;
+        width: 100px;
         font-size: 12px;
         font-weight: 600;
     }
 
-    .deleteButton {
-        height: 25px;
-        width: 60px;
-        font-size: 12px;
-        font-weight: 600;
-        margin-left: 10px;
+    .signInButton {
+        font-weight: 900;
+        width: 150px;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        background: rgb(241, 245, 28);  
+        margin: 20px 0 10px 0;
     }
     
 }

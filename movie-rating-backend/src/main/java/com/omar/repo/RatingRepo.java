@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface RatingRepo extends JpaRepository<RatingEntity, Integer> {
 
     List<RatingEntity> findByUserId(Integer userId);
+
 }

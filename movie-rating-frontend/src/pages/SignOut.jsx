@@ -14,7 +14,7 @@ const SignOut = () => {
   return (
     <>
         <div className='littleMessage'> You Have Been Signed Out </div>
-        <div className='littleMessage'> You Will Be Redirected To The Home Page In 5 Seconds </div>
+        <div className='littleLittleMessage'> You Will Be Redirected To The Home Page In 5 Seconds </div>
     </>
     
     

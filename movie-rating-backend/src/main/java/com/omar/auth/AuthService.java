@@ -18,6 +18,9 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepo.findByUsername(request.getUsername()).isPresent()) {
+            return AuthenticationResponse.builder().username("Username already exists").build();
+        }
         UserEntity user = new UserEntity();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
