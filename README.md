@@ -11,11 +11,11 @@ Movie Rating App using Spring, React, and MySQL. Keep track of and rate your fav
 ![Home](https://github.com/OmarAz01/movie-rating-fullstack/assets/118571302/18f7d4ff-222c-400e-9a85-fe7a59e7a28a)  
   
 ## How to run  
-2- Clone the repo locally  
-1- Make sure you have mysql installed  
-2- Create an application.properties file for the backend under src/main/resources and fill it with the connection details that match your local MySQL installation  
-3- Create a .env file for the frontend under src that includes: VITE_URL="Your spring url here"  
-4- Build the maven application and run the maven project and the react project  
+1- Clone the repo locally  
+2- Make sure you have mysql installed  
+3- Create an application.properties file for the backend under src/main/resources and fill it with the connection details that match your local MySQL installation  
+4- Create a .env file for the frontend under src that includes: VITE_URL="Your spring url here"  
+5- Build the maven application and run the maven project and the react project  
 
 ## Snapshots  
 
